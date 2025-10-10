@@ -46,9 +46,9 @@ def reciprocal(n):
 
     
 # function for precentage
-def percentage(n,total):
+def percentage(n1,total):
     try:
-        return(n / total) * 100
+        return(n1 / total) * 100
     except ValueError:
         return "The total should greater than zero"
     
@@ -97,7 +97,7 @@ def StandardMode_Main():
             print(" Reciprocal" , n1 ,"=", reciprocal(n1))
         elif Choose == 8:
             n1,total = eval(input("Enter the: number, Total eg. 2,3: "))
-            print(n1 ,"of",total ,"=" , power(n1,total),"%")
+            print(n1 ,"of",total ,"=" ,percentage(n1,total),"%")
         elif Choose == 9:
             evaluate_exepression()
         elif Choose == 0:
@@ -108,5 +108,6 @@ def StandardMode_Main():
 
 
 StandardMode_Main():
+
 
 
