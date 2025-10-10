@@ -15,8 +15,6 @@ def multiply(n1,n2):
         print ("Please enter integer or float number")
     else:
         return n1 * n2
-# n1 = float(input())
-# n2 = float(input())
 
 # function for divide
 def divide(n1,n2):
@@ -110,4 +108,5 @@ def StandardMode_Main():
 
 
 StandardMode_Main():
+
 
