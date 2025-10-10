@@ -1,0 +1,47 @@
+# function for add
+def add(n1,n2):
+    if type(n1) == str or type(n2) == str:
+        print ("Please enter integer or float number")
+    else:
+        return n1 + n2
+
+# function for subtract
+def subtract(n1,n2):
+    if type(n1) == str or type(n2) == str:
+        print ("Please enter integer or float number")
+    else:
+        return n1 - n2
+    if n1 < n2:
+        return  - n2 - n1
+    
+# function for multiply
+def multiply(n1,n2):
+    if type(n1) == str or type(n2) == str:
+        print ("Please enter integer or float number")
+    else:
+        return n1 * n2
+# n1 = float(input())
+# n2 = float(input())
+
+# function for divide
+def divide(n1,n2):
+    try:
+        n1 / n2
+    except ZeroDivisionError:
+        return "Please Dont divide by 0 " 
+    
+    
+# function for sqrt
+import math
+def sqrt(n):
+    while true:
+     try:
+        return math.sqrt(n)
+     except ValueError:
+        return "negative number will creat imaginary number"
+     
+
+# functon for reciprocal
+def reciprocal
+
+
