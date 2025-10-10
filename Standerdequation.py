@@ -29,7 +29,7 @@ def divide(n1,n2):
 # function for sqrt
 import math
 def sqrt(n):
-    while true:
+    while True:
      try:
         return math.sqrt(n)
      except ValueError:
@@ -55,10 +55,12 @@ def percentage(n,total):
         return "The total should greater than zero"
     
 
-
+def evaluate_exepression():
+    a = eval(input("Enter the equation: "))
+    print("Result = ",a)
 
 # main function
-def StandardMode():
+def StandardMode_Main():
     while True:
         print("----- Standard Mode  -----")
         print("Enter number 1 for add:")
@@ -69,6 +71,7 @@ def StandardMode():
         print("Enter number 6 for Power:")
         print("Enter number 7 for reciprocal:")
         print("Enter number 8 for precentage:")
+        print("Enter number 9 for evaluate exepression:")
         print("Enter number 0 to Exit:")
 
         Choose = eval(input("Enter your Choose: "))
@@ -97,6 +100,8 @@ def StandardMode():
         elif Choose == 8:
             n1,total = eval(input("Enter the: number, Total eg. 2,3: "))
             print(n1 ,"of",total ,"=" , power(n1,total),"%")
+        elif Choose == 9:
+            evaluate_exepression()
         elif Choose == 0:
             break
         else:
@@ -104,4 +109,5 @@ def StandardMode():
             Choose = eval(input("Enter your Choose"))
 
 
-StandardMode()
+StandardMode_Main():
+
