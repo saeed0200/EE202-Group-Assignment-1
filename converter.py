@@ -1,7 +1,39 @@
+def temperature(): # Here is the main function for temperature catagory
+    temperatureUnits=["F","C","K"]
+    print(f"Temperature units: {temperatureUnits}")
+    fromUnit = input("choose unit to convert from: ").upper() # The unit to convert from
+    fromUnit = unitcheck(temperatureUnits,fromUnit,"from") # to make sure that the user intered a valid unit
+    toUnit= input("choose unit to convert to: ").upper() # The unit to convert to
+    toUnit= unitcheck(temperatureUnits,toUnit,"to")
+    value=eval(input("Value: "))
+    print(toCelius(fromUnit,toUnit,value),toUnit)
 
-print("Converter Mode")
-print("Categorys: \n1.Length \n2.Weight \n3.Temperature")
-category = input("Category: ").lower()
+def toCelius(fromUnit,toUnit,value): # here we convert the enterd value of tempreature to celcius
+   # Conversion Factors to celsius
+    FtoC=(value-32)*5/9
+    KtoC=value-273.15
+    if fromUnit=="C":
+        return fromCelsius(toUnit,value)
+    elif fromUnit=="F":
+
+        return fromCelsius(toUnit,FtoC)
+    elif fromUnit=="K":
+        return fromCelsius(toUnit,KtoC)
+
+def fromCelsius(toUnit,c): # here we recive the value of tempreature in cilsius and convert it to the wanted unit
+    # Conversion Factors from celsius
+    CtoF=c*9/5+32
+    CtoK=c + 273.15
+    if toUnit=="F":
+        result =CtoF
+    elif toUnit=="K":
+        result=CtoK
+    elif toUnit=="C":
+        result=c
+    return result
+
+
+
 
 def toKg(fromUnit,toUnit,value): # This is a function to convert to base weight unit
     # Conversion Factors to Kg
@@ -9,7 +41,6 @@ def toKg(fromUnit,toUnit,value): # This is a function to convert to base weight 
     Lb=0.4536
     Oz=0.0283
 
-    
     if fromUnit =="g":
         kg=G*value
     elif fromUnit=="lb":
@@ -129,14 +160,38 @@ def weight():
 
 
 
-def main(category):
-    if category=="length" or category =="1":
-        length()
-    elif category=="weight" or category =="2":
-        weight()
+def main():
+    print("Converter Mode")
+    print("Categorys: \n1.Length \n2.Weight \n3.Temperature \n4.Exit")
+    category = input("Category: ").lower()
+    while True:
+        if category=="length" or category =="1":
+            length()
+        elif category=="weight" or category =="2":
+            weight()
+        elif category=="temperature" or category=="3":
+            temperature()
+        elif category=="exit" or category=="4":
+            break
+        else:
+            print("Invalid choise, please chose one of the folowing categorys:")
+            print("Categorys: \n1.Length \n2.Weight \n3.Temperature\n4.Exit")
+            category = input("Category: ").lower()
+            continue
+    print("Converter Mode")
+    print("Categorys: \n1.Length \n2.Weight \n3.Temperature\n4.Exit")
+    category = input("Category: ").lower()
 
 
-main(category)
+
+
+
+
+main()
+
+
+#Todo: I need to handle the eror when the user enter a string in the value
+
 
 
 
