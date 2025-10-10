@@ -1,18 +1,13 @@
 # function for add
 def add(n1,n2):
-    if type(n1) == str or type(n2) == str:
-        print ("Please enter integer or float number")
-    else:
         return n1 + n2
 
 # function for subtract
 def subtract(n1,n2):
-    if type(n1) == str or type(n2) == str:
-        print ("Please enter integer or float number")
-    else:
+    if n1 > n2:
         return n1 - n2
-    if n1 < n2:
-        return  - n2 - n1
+    else:
+        return  - n2 + n1
     
 # function for multiply
 def multiply(n1,n2):
@@ -107,5 +102,6 @@ def StandardMode():
         else:
             print("Error input try again please")
             Choose = eval(input("Enter your Choose"))
+
 
 StandardMode()
