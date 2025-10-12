@@ -23,8 +23,8 @@ def temperature(): # Here is the main function for temperature catagory
     fromUnit = unitcheck(temperatureUnits,fromUnit,"from") # to make sure that the user intered a valid unit
     toUnit= input("choose unit to convert to: ").upper() # The unit to convert to
     toUnit= unitcheck(temperatureUnits,toUnit,"to")
-    value=eval(input("Value: "))
-    cprint(f"{toCelius(fromUnit,toUnit,value)} {toUnit}", "green") # Coloring result
+    value=checkValue()
+    cprint(f"Result: {toCelius(fromUnit,toUnit,value)} {toUnit}", "green") # Coloring result
 
 def toCelius(fromUnit,toUnit,value): # here we convert the enterd value of tempreature to celcius
     # Conversion Factors to celsius
@@ -99,10 +99,9 @@ def volume():
     fromUnit = unitcheck(volumeUnits, fromUnit, "from")
     toUnit = input("choose unit to convert to: ").lower()
     toUnit = unitcheck(volumeUnits, toUnit, "to")
-    value = eval(input("Value: "))
-    value = checkValue(value)
+    value = checkValue()
     result = toLiter(fromUnit, toUnit, value)
-    cprint(f"{result} {toUnit}", "green") 
+    cprint(f"Result: {result} {toUnit}", "green") 
 
 
 
@@ -146,11 +145,15 @@ def fromKg(toUnit,kg): # This function to caculte the final result for the lengh
 
 
 
-def checkValue(value): # a function to check if the value is postive or not
+def checkValue(): # a function to check if the value is postive or not
     while True:
+        try:
+            value=eval(input("value:"))
+        except NameError:
+            print("Please inter numbers only", "red")
+            continue
         if value <0:
-            cprint("Invalid value, please inter a postive number", "yellow") # Coloring warning
-            value=eval(input("value: "))
+            cprint("Invalid value, please inter a postive number", "red") # Coloring warning
         else:
             return value
         
@@ -222,10 +225,9 @@ def length():
     fromUnit = unitcheck(lengthUnits,fromUnit,"from") # to make sure that the user intered a valid unit
     toUnit= input("choose unit to convert to: ").lower() # The unit to convert to
     toUnit= unitcheck(lengthUnits,toUnit,"to")
-    value=eval(input("Value: "))
-    value= checkValue(value) #To check if the value of the lenght is postive
+    value= checkValue() #To check if the value of the lenght is postive and to handle NameEror
     result=ToMeter(fromUnit,toUnit,value)
-    cprint(f"{result} {toUnit}", "green") # Coloring result
+    cprint(f"Result: {result} {toUnit}", "green") # Coloring result
 
 
     
@@ -236,10 +238,9 @@ def weight():
     fromUnit = unitcheck(weightUnits,fromUnit,"from") # to make sure that the user intered a valid unit
     toUnit= input("choose unit to convert to: ").lower() # The unit to convert to
     toUnit= unitcheck(weightUnits,toUnit,"to")
-    value=eval(input("Value: "))
-    value= checkValue(value) #To check if the value of the lenght is postive
+    value= checkValue() #To check if the value of the lenght is postive
     result=toKg(fromUnit,toUnit,value)
-    cprint(f"{result} {toUnit}", "green") # Coloring result
+    cprint(f"Result: {result} {toUnit}", "green") # Coloring result
 
 
 
@@ -249,8 +250,8 @@ def main():
     cprint("Categorys:", "yellow") # Coloring label
     # Updated Category List
     print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit") 
-    category = input("Category: ").lower()
     while True:
+        category = input("Category: ").lower()
         if category=="length" or category =="1":
             length()
         elif category=="weight" or category =="2":
@@ -260,21 +261,22 @@ def main():
         elif category=="volume" or category =="4": 
             volume()
         elif category=="exit" or category=="5": 
-            break
+            return
         else:
             cprint("Invalid choise, please chose one of the folowing categorys:", "red") # Coloring error
             cprint("Categorys:", "yellow") # Coloring label
             # Updated Category List
             print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit")
-            category = input("Category: ").lower()
+            
             continue
-    cprint("Converter Mode", "yellow") # Coloring title
-    cprint("Categorys:", "yellow") # Coloring label
-    # Updated Category List
-    print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit")
-    category = input("Category: ").lower()
+        
+        cprint("Converter Mode", "yellow") # Coloring title
+        cprint("Categorys:", "yellow") # Coloring label
+        # Updated Category List
+        print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit")
+        category = input("Category: ").lower()
+        if category=="exit" or category=="5": 
+            return
 
 
 main()
-
-#Todo: I need to handle the eror when the user enter a string in the value
