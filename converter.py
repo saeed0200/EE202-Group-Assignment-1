@@ -1,3 +1,4 @@
+# Constants for coloring output
 COLORS = {
     "green": "\033[92m",    # Green: results
     "yellow": "\033[93m",   # Yellow: titles 
@@ -7,6 +8,7 @@ COLORS = {
 
 
 def cprint(text, kind): # take the text here and print it in a specific colour
+    """Prints text in a specific color."""
     if kind in COLORS:
         color_code = COLORS[kind]
     else:
@@ -15,6 +17,7 @@ def cprint(text, kind): # take the text here and print it in a specific colour
         
     print(f"{color_code}{text}{COLORS['reset']}")
 
+history = []
 
 def temperature(): # Here is the main function for temperature catagory
     temperatureUnits=["F","C","K"]
@@ -24,7 +27,12 @@ def temperature(): # Here is the main function for temperature catagory
     toUnit= input("choose unit to convert to: ").upper() # The unit to convert to
     toUnit= unitcheck(temperatureUnits,toUnit,"to")
     value=checkValue()
-    cprint(f"Result: {toCelius(fromUnit,toUnit,value)} {toUnit}", "green") # Coloring result
+    
+    result_val = toCelius(fromUnit,toUnit,value)
+    
+    history.append(f"Temperature: {value} {fromUnit} {result_val} {toUnit}") # add the result to the history
+    
+    cprint(f"Result: {result_val} {toUnit}", "green") # Coloring result
 
 def toCelius(fromUnit,toUnit,value): # here we convert the enterd value of tempreature to celcius
     # Conversion Factors to celsius
@@ -58,7 +66,7 @@ def fromCelsius(toUnit,c): # here we recive the value of tempreature in cilsius 
 def fromLiter(toUnit, liters):
     # Conversion Factors from Liters
     ML = 1000
-    GALLON = 0.264172      
+    GALLON = 0.264172       
     OZ_FLUID = 33.814     
 
     if toUnit == "ml":
@@ -77,7 +85,7 @@ def toLiter(fromUnit, toUnit, value):
     # Conversion Factors to Liters
     ML_FACTOR = 0.001
     GALLON_FACTOR = 3.78541 
-    OZ_FACTOR = 0.0295735  
+    OZ_FACTOR = 0.0295735 
 
     # converting to liters
     if fromUnit == "ml":
@@ -101,8 +109,10 @@ def volume():
     toUnit = unitcheck(volumeUnits, toUnit, "to")
     value = checkValue()
     result = toLiter(fromUnit, toUnit, value)
+    
+    history.append(f"Volume: {value} {fromUnit} = {result} {toUnit}") # add the result to the history
+    
     cprint(f"Result: {result} {toUnit}", "green") 
-
 
 
 def toKg(fromUnit,toUnit,value): # This is a function to convert to base weight unit
@@ -117,7 +127,7 @@ def toKg(fromUnit,toUnit,value): # This is a function to convert to base weight 
         kg=Lb*value
     elif fromUnit=="oz":
         kg=Oz*value
-    elif fromUnit=="mg": # NEW
+    elif fromUnit=="mg": 
         kg=Mg*value
     else:
         kg=value
@@ -136,13 +146,27 @@ def fromKg(toUnit,kg): # This function to caculte the final result for the lengh
         result=Lb*kg
     elif toUnit=="oz":
         result=Oz*kg
-    elif toUnit=="mg": # NEW
+    elif toUnit=="mg":
         result=Mg*kg
     else:
         result=kg
     
     return result
 
+def weight():
+    weightUnits=["kg","g","lb","oz","mg"] # UPDATED: added 'mg'
+    cprint(f"Weigh units: {weightUnits}", "yellow") # coloring unit list
+    fromUnit = input("choose unit to convert from: ").lower() # The unit to convert from
+    fromUnit = unitcheck(weightUnits,fromUnit,"from") # to make sure that the user intered a valid unit
+    toUnit= input("choose unit to convert to: ").lower() # The unit to convert to
+    toUnit= unitcheck(weightUnits,toUnit,"to")
+    value= checkValue() #To check if the value of the lenght is postive
+    
+    result=toKg(fromUnit,toUnit,value)
+    
+    history.append(f"Weight: {value} {fromUnit} = {result} {toUnit}")  # add the result to the history
+    
+    cprint(f"Result: {result} {toUnit}", "green") # Coloring result
 
 
 def checkValue(): # a function to check if the value is postive or not
@@ -226,57 +250,56 @@ def length():
     toUnit= input("choose unit to convert to: ").lower() # The unit to convert to
     toUnit= unitcheck(lengthUnits,toUnit,"to")
     value= checkValue() #To check if the value of the lenght is postive and to handle NameEror
-    result=ToMeter(fromUnit,toUnit,value)
-    cprint(f"Result: {result} {toUnit}", "green") # Coloring result
-
-
     
-def weight():
-    weightUnits=["kg","g","lb","oz","mg"] # UPDATED: added 'mg'
-    cprint(f"Weigh units: {weightUnits}", "yellow") # Coloring unit list
-    fromUnit = input("choose unit to convert from: ").lower() # The unit to convert from
-    fromUnit = unitcheck(weightUnits,fromUnit,"from") # to make sure that the user intered a valid unit
-    toUnit= input("choose unit to convert to: ").lower() # The unit to convert to
-    toUnit= unitcheck(weightUnits,toUnit,"to")
-    value= checkValue() #To check if the value of the lenght is postive
-    result=toKg(fromUnit,toUnit,value)
+    result=ToMeter(fromUnit,toUnit,value)
+    
+    history.append(f"Length: {value} {fromUnit} = {result} {toUnit}") # add the result to the history
+    
     cprint(f"Result: {result} {toUnit}", "green") # Coloring result
-
-
 
 
 def main():
     cprint("Converter Mode", "yellow") # Coloring title
-    cprint("Categorys:", "yellow") # Coloring label
-    # Updated Category List
-    print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit") 
+    
     while True:
-        category = input("Category: ").lower()
-        if category=="length" or category =="1":
+        cprint("Categorys:", "yellow") # Coloring label
+        print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History") 
+        
+        category_input = input("Category: ").lower()
+        
+        if category_input == "history" or category_input == "6":
+            cprint(" History", "yellow")
+            if len(history)==0:
+                print("The history is empty")
+            else:
+                cprint('\n'.join(history), 'green') 
+            print("------------------------------")
+            continue
+        
+        elif category_input == "exit" or category_input == "5": 
+            return 
+        
+        elif category_input == "length" or category_input == "1":
             length()
-        elif category=="weight" or category =="2":
+        elif category_input == "weight" or category_input == "2":
             weight()
-        elif category=="temperature" or category=="3":
+        elif category_input == "temperature" or category_input == "3":
             temperature()
-        elif category=="volume" or category =="4": 
+        elif category_input == "volume" or category_input == "4": 
             volume()
-        elif category=="exit" or category=="5": 
-            return
+        
         else:
             cprint("Invalid choise, please chose one of the folowing categorys:", "red") # Coloring error
             cprint("Categorys:", "yellow") # Coloring label
-            # Updated Category List
-            print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit")
-            
+            print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History")
             continue
         
-        cprint("Converter Mode", "yellow") # Coloring title
-        cprint("Categorys:", "yellow") # Coloring label
-        # Updated Category List
-        print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit")
-        category = input("Category: ").lower()
-        if category=="exit" or category=="5": 
-            return
+        cprint("Converter Mode", "yellow") 
+        cprint("Categorys:", "yellow")
+
+        print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History")
+        if category_input=="exit" or category_input=="5": 
+             return
 
 
 main()
