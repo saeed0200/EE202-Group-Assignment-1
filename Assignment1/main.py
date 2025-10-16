@@ -1,6 +1,6 @@
 import standard
 import programmer
-import scientific_Module
+import scientific
 import converter
 
 def main():
