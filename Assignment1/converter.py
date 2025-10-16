@@ -262,7 +262,7 @@ def length():
 
 
 def main_menu():
-    cprint("Converter Mode", "yellow") # Coloring title
+    cprint("----- Converter Mode  -----", "yellow") # Coloring title
     cprint("Categorys:", "yellow") # Coloring label
     print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History") 
     
@@ -298,7 +298,7 @@ def main_menu():
             print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History")
             continue
         
-        cprint("Converter Mode", "yellow") 
+        cprint("----- Converter Mode  -----", "yellow") # Coloring title
         cprint("Categorys:", "yellow")
 
         print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History")
@@ -306,4 +306,4 @@ def main_menu():
              return
 
 
-main_menu()
+
