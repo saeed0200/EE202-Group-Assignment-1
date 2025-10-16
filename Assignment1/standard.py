@@ -201,5 +201,4 @@ def checknumberr(): # a function to check if the value is postive or not
             continue
 
         return n1
-main_menu()
 
