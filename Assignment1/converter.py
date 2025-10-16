@@ -177,7 +177,7 @@ def checkValue(): # a function to check if the value is postive or not
         try:
             value=eval(input("value:"))
         except NameError:
-            print("Please inter numbers only", "red")
+            cprint("Please inter numbers only", "red")
             continue
         if value <0:
             cprint("Invalid value, please inter a postive number", "red") # Coloring warning
@@ -304,6 +304,7 @@ def main_menu():
         print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History")
         if category_input=="exit" or category_input=="5": 
              return
+
 
 
 
