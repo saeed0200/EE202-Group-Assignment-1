@@ -19,7 +19,7 @@ def main():
         elif choice == "2":
             programmer.main_menu()
         elif choice == "3":
-            scientific_Module.main_menu()
+            scientific.main_menu()
         elif choice == "4":
             converter.main_menu()
         elif choice == "5":
