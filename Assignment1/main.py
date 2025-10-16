@@ -1,6 +1,6 @@
 import standard
 import programmer
-import scientific
+import scientific_Module
 import converter
 
 def main():
@@ -19,7 +19,7 @@ def main():
         elif choice == "2":
             programmer.main_menu()
         elif choice == "3":
-            scientific.main_menu()
+            scientific_Module.main_menu()
         elif choice == "4":
             converter.main_menu()
         elif choice == "5":
