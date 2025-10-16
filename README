@@ -1,2 +1,126 @@
-# EE202-Group-Assignment-1
-EE202 Group assignments 1 for team D
+#  Modular Command-Line Calculator  
+**Course:** EE202 - Object-Oriented Programming  
+**Department:** Electrical Engineering, KAU  
+**Assignment Type:** Group  assigment for team D
+
+---
+
+## Group Members & Contributions  
+| Name | Contribution |
+
+| [ Abdulelah] | Created the Standard Module|
+| [ Albraa ]    | Created the Programmer Module|
+| [ Alaa ]     | Created the Scientific Module|
+| [ Saeed ]    | Created the Converter Module|
+| [ Suliman ]  | Work on bonus requirements and create a README file|
+| [ Muhtadi ]  | megerd the files and run the final file|  
+*
+
+---
+
+## Project Overview  
+This project is a **Modular Command-Line Calculator** offering four main modes:
+
+1. **Standard Mode:** Performs basic arithmetic operations (add, subtract, multiply, divide, etc.).  
+2. **Programmer Mode:** Includes base conversions and bitwise operations.  
+3. **Scientific Mode:** Offers trigonometric, logarithmic, and exponential functions.  
+4. **Converter Mode:** Converts between units of length, weight, and temperature.  
+
+The goal is create a user-friendly Modular Command-Line Calculator.
+
+---
+
+##  How to Run  
+1. Make sure you have **Python 3.x** installed.  
+2. Open a terminal in the project directory.  
+3. Run the main file: main.py
+
+---
+
+
+
+Test Cases:
+
+
+Standard Module
+(Test Case)	                     (Input)	                            (Expected Output)
+
+Addition            	         5 + 3	                                      8
+
+Division by zero	             5 / 0      	                     Please Dont divide by 0 
+
+Negative square root	        sqrt(-9)            	            negative number will creat imaginary number
+
+Exponentiation              	2 ** 3	                                      8
+
+Percentage	                    50 % of 200	                                 100
+
+
+Programmer Module
+(Test Case)	                    (Input)	                                 (Expected Output)
+
+Decimal to Binary	             10	                                        1010
+
+Binary to Decimal	            1010	                                     10
+
+Bitwise AND	                    5 & 3	                                      1
+
+Decimal to Hexadecimal	        255	                                         FF
+
+
+
+Scientific Module
+Test Case                   	(Input)	                                 Expected Output
+
+sin(90°)	                    sin 90                                      degrees	1.0
+
+log(100)	                    log 100                                     	2.0
+
+ln(-5)	                        ln -5	                        Error: ln undefined for non-positive numbers.
+
+factorial(5)	                5!	                                            120
+
+acos(2)	                        acos 2	                             Error: value out of range.
+
+
+
+Converter Module
+Test Case	                      Input	                                        Expected Output
+                       
+100 cm to inches	            100 cm to in	                                    39.37
+
+1 kg to lbs	                    1 kg to lb	                                        2.2046
+
+0°C to °F	                    0 C to F	                                         32.0
+
+-10 K to C	                    -10 K to C	                             Invalid value, please inter a postive number
+
+Unknown unit	                5 xyz to cm                                    invalid choise
+
+
+
+---
+
+
+-Challenges Faced
+
+During development we encountered several challenges:
+
+1-Managing module imports and returning control from each mode to the main menu.
+
+2-Ensuring consistent error handling without crashing the program.
+
+3-Designing clear menus and user prompts for smooth navigation.
+
+
+---
+
+
+-Extra Features
+1-History of previous calculations.
+
+2-Colored terminal output .
+
+3-Extended unit conversions.
+
+.
