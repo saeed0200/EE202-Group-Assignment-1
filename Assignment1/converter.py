@@ -6,7 +6,7 @@ COLORS = {
     "reset": "\033[0m"      # Reset: back to normal
 }
 
-
+''' '''
 def cprint(text, kind): # take the text here and print it in a specific colour
     """Prints text in a specific color."""
     if kind in COLORS:
@@ -18,8 +18,11 @@ def cprint(text, kind): # take the text here and print it in a specific colour
     print(f"{color_code}{text}{COLORS['reset']}")
 
 history = []
-
+''' this is the main function for the temperature when called it ask the user for the unit he want to convert from
+and the unit he want to convert to and the value of the unit he want convert from, after that send the input to 
+(tocelius) function to do the calculation'''
 def temperature(): # Here is the main function for temperature catagory
+
     temperatureUnits=["F","C","K"]
     cprint(f"Temperature units: {temperatureUnits}", "yellow") # Coloring unit list
     fromUnit = input("choose unit to convert from: ").upper() # The unit to convert from
@@ -258,12 +261,13 @@ def length():
     cprint(f"Result: {result} {toUnit}", "green") # Coloring result
 
 
-def main():
+def main_menu():
     cprint("Converter Mode", "yellow") # Coloring title
+    cprint("Categorys:", "yellow") # Coloring label
+    print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History") 
     
     while True:
-        cprint("Categorys:", "yellow") # Coloring label
-        print("1.Length \n2.Weight \n3.Temperature \n4.Volume \n5.Exit \n6.History") 
+
         
         category_input = input("Category: ").lower()
         
@@ -302,4 +306,4 @@ def main():
              return
 
 
-main()
+main_menu()
