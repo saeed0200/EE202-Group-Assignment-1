@@ -117,11 +117,12 @@ def main_menu():
         print("Enter number 9 for evaluate exepression:")
         print("Enter number 10 for History:")
         print("Enter number 0 to Exit:")
-
-        Choose = eval(input(COLORS["yellow"] + "Enter your Choose: " + COLORS["reset"]))
-
+          
+        Choose = checChoose()
+          
         if Choose == 1:
-            n1,n2 = eval(input(COLORS["yellow"] + "Enter the numbers eg. 2,3: " + COLORS["reset"]))
+            
+            n1,n2 =checknumber()
             cprint(f"{n1} + {n2} = {add(n1,n2)}", "green")
             
         elif  Choose == 2:
@@ -129,19 +130,19 @@ def main_menu():
             cprint(f"{n1} - {n2} = {subtract(n1,n2)}", "green")
             
         elif Choose == 3:
-            n1,n2 = eval(input(COLORS["yellow"] + "Enter the numbers eg. 2,3: " + COLORS["reset"]))
+            n1,n2 = checknumber()
             cprint(f"{n1} * {n2} = {multiply(n1,n2)}", "green")
             
         elif Choose == 4:
-            n1,n2 = eval(input(COLORS["yellow"] + "Enter the numbers eg. 2,3: " + COLORS["reset"]))
+            n1,n2 =checknumber()
             cprint(f"{n1} / {n2} = {divide(n1,n2)}", "green")
             
         elif Choose == 5:
-            n1 = eval(input(COLORS["yellow"] + "Enter the number" + COLORS["reset"]))
+            n1 = checknumberr()
             cprint(f"{n1} ** 0.5 = {sqrt(n1)}", "green")
             
         elif Choose == 6:
-            n1,n2 = eval(input(COLORS["yellow"] + "Enter the numbers eg. 2,3: " + COLORS["reset"]))
+            n1,n2 = checknumber()
             cprint(f"{n1} ** {n2} = {power(n1,n2)}", "green")
             
         elif Choose == 7:
@@ -149,7 +150,7 @@ def main_menu():
             cprint(f" Reciprocal {n1} = {reciprocal(n1)}", "green")
             
         elif Choose == 8:
-            n1,total = eval(input(COLORS["yellow"] + "Enter the: number, Total eg. 2,3: " + COLORS["reset"]))
+            n1,total = checknumber()
             cprint(f"{n1} of {total} = {percentage(n1,total)}%", "green")
             
         elif Choose == 9:
@@ -170,4 +171,35 @@ def main_menu():
             cprint("Error input try again please", "red")
             Choose = eval(input(COLORS["yellow"] + "Enter your Choose" + COLORS["reset"]))
 
+
+
+def checChoose(): # a function to check if the value is postive or not
+    while True:
+        try:
+            value = eval(input(COLORS["yellow"] + "Enter your Choose: " + COLORS["reset"]))
+        except NameError:
+            cprint("Please Enter numbers only", "red")
+            continue
+
+        return value
+
+def checknumber(): # a function to check if the value is postive or not
+    while True:
+        try:
+           n1,n2 = eval(input(COLORS["yellow"] + "Enter the numbers eg. 2,3: " + COLORS["reset"]))
+        except NameError:
+            cprint("Please Enter numbers only", "red")
+            continue
+
+        return n1,n2
+def checknumberr(): # a function to check if the value is postive or not
+    while True:
+        try:
+           n1 = eval(input(COLORS["yellow"] + "Enter the number" + COLORS["reset"]))
+        except NameError:
+            cprint("Please Enter numbers only", "red")
+            continue
+
+        return n1
+main_menu()
 
