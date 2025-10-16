@@ -21,12 +21,16 @@ def cprint(text, kind):  # take the text here and print it in a specific colour
 history = []
 
 # function for add
-def add(n1,n2):
+'''This function adds two numbers n1 and n2, stores the operation in a history list, and returns the result.
+It helps keep track of all addition operations performed.
+def add(n1,n2):'''
+
     result = n1 + n2
     history.append(f"{n1} + {n2} = {result}")
     return result
 
 # function for subtract
+
 def subtract(n1,n2):
     if n1 > n2:
         result = n1 - n2
@@ -100,7 +104,7 @@ def evaluate_exepression():
     history.append(f"Expression result: {a}")
 
 # main function
-def StandardMode_Main():
+def Mainmenu():
     while True:
         cprint("----- Standard Mode  -----", "yellow")
         print("Enter number 1 for add:")
@@ -169,3 +173,4 @@ def StandardMode_Main():
 
 
 StandardMode_Main()
+
